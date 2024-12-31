@@ -32,15 +32,13 @@
       "export PATH=$GOBIN:$PATH",
       "go install sigs.k8s.io/cloud-provider-k3s@v0.2.0",
       "export FRP_CONFIG_PATH=$(git rev-parse --show-toplevel)/frp_config.ini",
-      "export $(cat .env | xargs)"  // Load .env file environment variables
+      "export $(cat .env | xargs)" 
     ],
     "scripts": {
       "test": ["echo \"Error: no test specified\" && exit 1"],
       "start-k3s": [
-        "echo 'Starting K3s one-node cluster...'",
-        "curl -sfL https://get.k3s.io | sh -",
-        "export KUBEVERSION=$(kubectl version --short | awk -F ': ' 'NR==1 {print $2}')",
-        "echo 'K3s cluster started with version $KUBEVERSION'"
+         "sudo bash start_k3s.sh"
+        
       ],
       "start-frp": [
         "echo 'Starting FRP client...'",
